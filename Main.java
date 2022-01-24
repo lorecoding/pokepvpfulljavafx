@@ -129,11 +129,9 @@ static Casella[][] matrix = new Casella[LATO][LATO2];
 
 
         Scene scene = new Scene(root, 1900, 1000);
-        if(controllo==0)
-
-    {
+        
         scene.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent key) -> {
-
+If(controllo==0){
             matrix[8][9].getChildren().remove(image2View);
             if (key.getCode().equals(KeyCode.W)) {
 
@@ -200,7 +198,7 @@ static Casella[][] matrix = new Casella[LATO][LATO2];
 
             }
 
-        });
+       
     }
 
         //----------importante------
@@ -264,11 +262,11 @@ static Casella[][] matrix = new Casella[LATO][LATO2];
 
 
 
-            });
 
 
 
         }
+            });
 
 
         stage.setTitle("PokePvP");
