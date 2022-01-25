@@ -21,7 +21,6 @@ import javafx.event.EventHandler;
 public class Main extends Application {
     //---------INIZIO DICHIARAZIONI-------------------------------------//
     Personaggio tizio= new Personaggio(8,9);
-    Personaggio tizio1= new Personaggio(8,9);
    final static int LATO=11;
     final static int LATO2=25;
   int controllo=0;
@@ -129,9 +128,11 @@ static Casella[][] matrix = new Casella[LATO][LATO2];
 
 
         Scene scene = new Scene(root, 1900, 1000);
-        
+
         scene.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent key) -> {
-If(controllo==0){
+                    if(controllo==0)
+
+                    {
             matrix[8][9].getChildren().remove(image2View);
             if (key.getCode().equals(KeyCode.W)) {
 
@@ -146,6 +147,8 @@ If(controllo==0){
 
 
             }
+
+
             if (key.getCode().equals(KeyCode.S)) {
 
                 if (tizio.riga == 8 || tizio.riga == 7 && tizio.colonna < 7 || (tizio.riga == 0 && tizio.colonna == 14)) {
@@ -185,6 +188,11 @@ If(controllo==0){
 
 
             if (matrix[tizio.riga][tizio.colonna] == matrix[4][9]) {
+
+                matrix[4][9].getChildren().remove(image7View);
+                matrix[9][12].getChildren().add(image7View);
+
+
                 Image img2 = new Image("img/PAL1.PNG");
                 BackgroundImage bImg2 = new BackgroundImage(img2,
                         BackgroundRepeat.NO_REPEAT,
@@ -195,78 +203,147 @@ If(controllo==0){
                 root.setBackground(bGround2);
                 controllo=1;
 
+                tizio.riga=9;
+                tizio.colonna=12;
 
             }
+                    }
 
-       
-    }
+
+
+//----scenario entrata palestra---------//
+
+                    else if(controllo==1)
+                    {
+
+                        Image img2 = new Image("img/PAL1.PNG");
+                        BackgroundImage bImg2 = new BackgroundImage(img2,
+                                BackgroundRepeat.NO_REPEAT,
+                                BackgroundRepeat.NO_REPEAT,
+                                BackgroundPosition.DEFAULT,
+                                BackgroundSize.DEFAULT);
+                        Background bGround2 = new Background(bImg2);
+                        root.setBackground(bGround2);
+
+                       System.out.println(tizio.riga);
+                        System.out.println(tizio.colonna);
+
+                        if (key.getCode().equals(KeyCode.W)) {
+            if (tizio.riga<4&& tizio.colonna<12)
+            {
+                image7View.setImage(image2);
+            }
+                            else {
+                            image7View.setImage(image2);
+                                matrix[tizio.riga - 1][tizio.colonna].getChildren().add(image7View);
+                                tizio.riga = tizio.riga - 1;
+                        }
+                        }
+                        if (key.getCode().equals(KeyCode.S)) {
+
+
+                            image7View.setImage(image3);
+                            matrix[tizio.riga + 1][tizio.colonna].getChildren().add(image7View);
+                            tizio.riga = tizio.riga + 1;
+
+
+                        }
+
+                        if (key.getCode().equals(KeyCode.A)) {
+
+
+
+                            image7View.setImage(image5);
+                            matrix[tizio.riga][tizio.colonna - 1].getChildren().add(image7View);
+                            tizio.colonna = tizio.colonna - 1;
+
+                        }
+
+
+                        if (key.getCode().equals(KeyCode.D)) {
+
+
+                            image7View.setImage(image4);
+                            matrix[tizio.riga][tizio.colonna + 1].getChildren().add(image7View);
+                            tizio.colonna = tizio.colonna + 1;
+
+
+                        }
+
+                        if (matrix[tizio.riga][tizio.colonna] == matrix[0][11]) {
+
+
+                            controllo=2;
+
+                    }
+
+
+                    }
+
+
+                    else if(controllo==2) {
+                        Image img8 = new Image("img/PAL2.PNG");
+                        BackgroundImage bImg8 = new BackgroundImage(img8,
+                                BackgroundRepeat.NO_REPEAT,
+                                BackgroundRepeat.NO_REPEAT,
+                                BackgroundPosition.DEFAULT,
+                                BackgroundSize.DEFAULT);
+                        Background bGround3 = new Background(bImg8);
+                        root.setBackground(bGround3);
+
+
+                        matrix[0][10].getChildren().remove(image2View);
+                        tizio.riga=8;
+                        tizio.colonna=9;
+                        matrix[tizio.riga - 1][tizio.colonna].getChildren().add(image2View);
+                        if (key.getCode().equals(KeyCode.W)) {
+
+
+
+                            image7View.setImage(image2);
+                            matrix[tizio.riga][tizio.colonna].getChildren().add(image7View);
+                            tizio.riga = tizio.riga - 1;
+
+
+
+                        }
+                        if (key.getCode().equals(KeyCode.S)) {
+
+
+                            image7View.setImage(image3);
+                            matrix[tizio.riga + 1][tizio.colonna].getChildren().add(image7View);
+                            tizio.riga = tizio.riga + 1;
+
+
+                        }
+
+                        if (key.getCode().equals(KeyCode.A)) {
+
+
+
+                            image7View.setImage(image5);
+                            matrix[tizio.riga][tizio.colonna - 1].getChildren().add(image7View);
+                            tizio.colonna = tizio.colonna - 1;
+
+                        }
+
+
+                        if (key.getCode().equals(KeyCode.D)) {
+
+
+                            image7View.setImage(image4);
+                            matrix[tizio.riga][tizio.colonna + 1].getChildren().add(image7View);
+                            tizio.colonna = tizio.colonna + 1;
+
+
+                        }
+
+                    }
+        });
 
         //----------importante------
 
 
-        else if(controllo==1)
-        {
-            Image img2 = new Image("img/PAL1.PNG");
-            BackgroundImage bImg2 = new BackgroundImage(img2,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundPosition.DEFAULT,
-                    BackgroundSize.DEFAULT);
-            Background bGround2 = new Background(bImg2);
-            root.setBackground(bGround2);
-            controllo=1;
-            scene.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent key) -> {
-
-                matrix[8][9].getChildren().remove(image2View);
-                if (key.getCode().equals(KeyCode.W)) {
-
-
-
-                        image7View.setImage(image2);
-                        matrix[tizio.riga - 1][tizio.colonna].getChildren().add(image7View);
-                        tizio.riga = tizio.riga - 1;
-
-
-
-                }
-                if (key.getCode().equals(KeyCode.S)) {
-
-
-                        image7View.setImage(image3);
-                        matrix[tizio.riga + 1][tizio.colonna].getChildren().add(image7View);
-                        tizio.riga = tizio.riga + 1;
-
-
-                }
-
-                if (key.getCode().equals(KeyCode.A)) {
-
-
-
-                        image7View.setImage(image5);
-                        matrix[tizio.riga][tizio.colonna - 1].getChildren().add(image7View);
-                        tizio.colonna = tizio.colonna - 1;
-
-                }
-
-
-                if (key.getCode().equals(KeyCode.D)) {
-
-
-                        image7View.setImage(image4);
-                        matrix[tizio.riga][tizio.colonna + 1].getChildren().add(image7View);
-                        tizio.colonna = tizio.colonna + 1;
-
-
-                }
-
-
-
-
-
-
-        }
-            });
 
 
         stage.setTitle("PokePvP");
